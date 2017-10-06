@@ -102,11 +102,9 @@ class MainActivity : AppCompatActivity() {
                 news.add(item)
             }
         }
-
     }
 
     private fun method3() {
-
         val rawData = RawAsset.getData3(this)
         repeat(REPEAT) {
             val test = Gson().fromJson(rawData, Test3::class.java)
@@ -114,7 +112,5 @@ class MainActivity : AppCompatActivity() {
             val likes = test.items_like
             val news = test.items_new
         }
-
-
     }
 }
