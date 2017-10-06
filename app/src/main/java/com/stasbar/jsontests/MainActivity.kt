@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
 
         val rawData = RawAsset.getData1(this)
         repeat(REPEAT) {
-            val test1 = Gson().fromJson(rawData, Test1::class.java)
+            val data = Gson().fromJson(rawData, Test1::class.java)
 
             val downloads = ArrayList<ItemTest>()
-            with(test1.listDownload[0]) {
+            with(data.listDownload[0]) {
                 val kadrs = Kadr.split(",").map { it.toFloat() }
                 val ids = ListaId.split(",").map { it.toInt() }
                 val contents = tresc.split(",")
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             val new = ArrayList<ItemTest>()
-            with(test1.listNew[0]) {
+            with(data.listNew[0]) {
                 val kadrs = Kadr.split(",").map { it.toFloat() }
                 val ids = ListaId.split(",").map { it.toInt() }
                 val contents = tresc.split(",")
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             val likes = ArrayList<ItemTest>()
-            with(test1.listLike[0]) {
+            with(data.listLike[0]) {
                 val kadrs = Kadr.split(",").map { it.toFloat() }
                 val ids = ListaId.split(",").map { it.toInt() }
                 val contents = tresc.split(",")
@@ -77,28 +77,27 @@ class MainActivity : AppCompatActivity() {
     private fun method2() {
         val rawData = RawAsset.getData2(this)
         repeat(REPEAT) {
-            val test = Gson().fromJson(rawData, Test2::class.java)
+            val data = Gson().fromJson(rawData, Test2::class.java)
+            
             val downloads = ArrayList<ItemTest>()
-
-            repeat(test.download_kadr.size) {
-                val item = ItemTest(id = test.download_ListaId[it], tresc = test.download_tresc[it]
-                        , f = test.download_kadr[it], w = test.download_X[it], h = test.download_Y[it])
+            repeat(data.download_kadr.size) {
+                val item = ItemTest(id = data.download_ListaId[it], tresc = data.download_tresc[it]
+                        , f = data.download_kadr[it], w = data.download_X[it], h = data.download_Y[it])
                 downloads.add(item)
             }
 
             val likes = ArrayList<ItemTest>()
-
-            repeat(test.like_kadr.size) {
-                val item = ItemTest(id = test.like_ListaId[it], tresc = test.like_tresc[it]
-                        , f = test.like_kadr[it], w = test.like_X[it], h = test.like_Y[it])
+            repeat(data.like_kadr.size) {
+                val item = ItemTest(id = data.like_ListaId[it], tresc = data.like_tresc[it]
+                        , f = data.like_kadr[it], w = data.like_X[it], h = data.like_Y[it])
                 likes.add(item)
             }
 
 
             val news = ArrayList<ItemTest>()
-            repeat(test.new_kadr.size) {
-                val item = ItemTest(id = test.new_ListaId[it], tresc = test.new_tresc[it]
-                        , f = test.new_kadr[it], w = test.new_X[it], h = test.new_Y[it])
+            repeat(data.new_kadr.size) {
+                val item = ItemTest(id = data.new_ListaId[it], tresc = data.new_tresc[it]
+                        , f = data.new_kadr[it], w = data.new_X[it], h = data.new_Y[it])
                 news.add(item)
             }
         }
@@ -107,10 +106,10 @@ class MainActivity : AppCompatActivity() {
     private fun method3() {
         val rawData = RawAsset.getData3(this)
         repeat(REPEAT) {
-            val test = Gson().fromJson(rawData, Test3::class.java)
-            val downloads = test.items_download
-            val likes = test.items_like
-            val news = test.items_new
+            val data = Gson().fromJson(rawData, Test3::class.java)
+            val downloads = data.items_download
+            val likes = data.items_like
+            val news = data.items_new
         }
     }
 }
